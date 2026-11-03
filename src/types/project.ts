@@ -27,4 +27,6 @@ export type Project = {
   visualType: ProjectVisualType;
   githubUrl?: string;
   demoUrl?: string;
+  image?: string;
+  imageAlt?: string;
 };

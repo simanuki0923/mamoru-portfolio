@@ -14,10 +14,10 @@ import {
 } from "@/data/skills";
 
 export const metadata: Metadata = {
-  title: "Skills & Learning",
+  title: "Skills",
 
   description:
-    "使用技術と現在学習している技術を紹介します。",
+    "使用技術と現在習得中の技術を紹介します。",
 };
 
 export default function SkillsPage() {
@@ -27,16 +27,16 @@ export default function SkillsPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-5 py-16 lg:px-8">
           <div>
             <p className="font-semibold text-blue-600">
-              技術・学習
+              スキル
             </p>
 
             <h1 className="mt-2 text-4xl font-bold md:text-5xl">
-              Skills & Learning
+              Skills
             </h1>
 
             <p className="mt-5 max-w-2xl leading-7 text-slate-600">
-              これまで学習した技術と、
-              現在継続して学んでいる内容をまとめています。
+              これまでに習得した技術と、
+              現在継続して習得のため学んでいる内容をまとめています。
             </p>
           </div>
 
@@ -49,7 +49,7 @@ export default function SkillsPage() {
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold">
-            技術スタック
+            Skillsスタック
           </h2>
 
           <div className="grid gap-6 md:grid-cols-3">

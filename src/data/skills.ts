@@ -13,12 +13,13 @@ export const skillGroups = [
   },
 
   {
-    title: "Backend / Learning",
-    description: "バックエンド学習",
+    title: "Backend",
+    description: "バックエンド開発",
     skills: [
       "Laravel",
       "PHP",
       "PostgreSQL",
+      "MySQL",
     ],
   },
 
