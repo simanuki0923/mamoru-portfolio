@@ -23,22 +23,25 @@ import {
 } from "@/data/skills";
 
 export default function HomePage() {
-  const featuredProjects =
-    projects.slice(0, 3);
+  const featuredProjects = projects.slice(0, 3);
 
   return (
     <>
       {/* HERO */}
       <section className="overflow-hidden bg-white">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
-          <div>
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:px-8 lg:py-24 xl:gap-14">
+          {/* 左側 */}
+          <div className="min-w-0">
             <span className="inline-flex rounded-lg bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
               {siteConfig.role}
             </span>
 
-            <h1 className="mt-6 break-keep text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-5xl xl:text-6xl">
-              個人開発と学習の成果を
-              <span className="block text-blue-600">
+            <h1 className="mt-6 font-bold leading-[1.18] tracking-tight text-slate-900">
+              <span className="block whitespace-nowrap text-[34px] sm:text-[40px] lg:text-[42px] xl:text-[48px]">
+                個人開発と学習の成果を
+              </span>
+
+              <span className="mt-2 block whitespace-nowrap text-[34px] text-blue-600 sm:text-[40px] lg:text-[42px] xl:text-[48px]">
                 まとめたポートフォリオ
               </span>
             </h1>
@@ -55,7 +58,6 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-700"
               >
                 制作実績を見る
-
                 <ArrowRight size={18} />
               </Link>
 
@@ -68,7 +70,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <HeroVisual />
+          {/* 右側 */}
+          <div className="min-w-0">
+            <HeroVisual />
+          </div>
         </div>
       </section>
 
@@ -90,7 +95,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center">
+            <div className="flex min-w-0 flex-col justify-center">
               <p className="text-sm font-semibold text-blue-600">
                 Front-end / System Engineer
               </p>
@@ -136,23 +141,20 @@ export default function HomePage() {
 
             <Link
               href="/projects/"
-              className="mb-8 inline-flex items-center gap-2 font-semibold text-blue-600"
+              className="mb-8 inline-flex items-center gap-2 font-semibold text-blue-600 transition hover:text-blue-700"
             >
               すべて見る
-
               <ArrowRight size={17} />
             </Link>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {featuredProjects.map(
-              (project) => (
-                <ProjectCard
-                  key={project.slug}
-                  project={project}
-                />
-              ),
-            )}
+            {featuredProjects.map((project) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -166,48 +168,44 @@ export default function HomePage() {
           />
 
           <div className="grid gap-6 md:grid-cols-3">
-            {skillGroups.map(
-              (group, index) => {
-                const Icon =
-                  index === 0
-                    ? Monitor
-                    : index === 1
-                      ? Server
-                      : Wrench;
+            {skillGroups.map((group, index) => {
+              const Icon =
+                index === 0
+                  ? Monitor
+                  : index === 1
+                    ? Server
+                    : Wrench;
 
-                return (
-                  <div
-                    key={group.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-                  >
-                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                      <Icon size={24} />
-                    </div>
-
-                    <h3 className="text-lg font-bold text-slate-900">
-                      {group.title}
-                    </h3>
-
-                    <p className="mt-1 text-sm text-slate-500">
-                      {group.description}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {group.skills.map(
-                        (skill) => (
-                          <span
-                            key={skill}
-                            className="rounded-lg bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700"
-                          >
-                            {skill}
-                          </span>
-                        ),
-                      )}
-                    </div>
+              return (
+                <div
+                  key={group.title}
+                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <Icon size={24} />
                   </div>
-                );
-              },
-            )}
+
+                  <h3 className="text-lg font-bold text-slate-900">
+                    {group.title}
+                  </h3>
+
+                  <p className="mt-1 text-sm text-slate-500">
+                    {group.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-lg bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -221,46 +219,43 @@ export default function HomePage() {
           />
 
           <div className="space-y-4">
-            {learningItems.map(
-              (item) => (
-                <div
-                  key={item.title}
-                  className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-5 md:grid-cols-[130px_1fr]"
-                >
-                  <div className="flex">
-                    <span className="h-fit rounded-full bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-600">
-                      {item.status}
-                    </span>
-                  </div>
-
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <BookOpen
-                        size={17}
-                        className="text-blue-600"
-                      />
-
-                      <h3 className="font-bold text-slate-900">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {item.description}
-                    </p>
-                  </div>
+            {learningItems.map((item) => (
+              <div
+                key={item.title}
+                className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-200 hover:shadow-sm md:grid-cols-[130px_1fr]"
+              >
+                <div className="flex">
+                  <span className="h-fit rounded-full bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-600">
+                    {item.status}
+                  </span>
                 </div>
-              ),
-            )}
+
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <BookOpen
+                      size={17}
+                      className="shrink-0 text-blue-600"
+                    />
+
+                    <h3 className="font-bold text-slate-900">
+                      {item.title}
+                    </h3>
+                  </div>
+
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="mt-8">
             <Link
               href="/skills/"
-              className="inline-flex items-center gap-2 font-semibold text-blue-600"
+              className="inline-flex items-center gap-2 font-semibold text-blue-600 transition hover:text-blue-700"
             >
               学習・技術一覧を見る
-
               <GraduationCap size={18} />
             </Link>
           </div>
@@ -275,7 +270,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="rounded-3xl bg-gradient-to-r from-blue-50 to-indigo-50 p-8 md:p-12">
             <div className="grid items-center gap-8 md:grid-cols-[1fr_auto]">
-              <div>
+              <div className="min-w-0">
                 <p className="font-semibold text-blue-600">
                   Contact
                 </p>
@@ -298,17 +293,15 @@ export default function HomePage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800"
                 >
                   <GitBranch size={19} />
-
                   GitHub
                 </a>
 
                 {siteConfig.email && (
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700"
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-600"
                   >
                     <Mail size={19} />
-
                     Email
                   </a>
                 )}
