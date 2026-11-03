@@ -36,7 +36,7 @@ export default function HomePage() {
               {siteConfig.role}
             </span>
 
-            <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+            <h1 className="mt-6 break-keep text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-5xl xl:text-6xl">
               個人開発と学習の成果を
               <span className="block text-blue-600">
                 まとめたポートフォリオ
