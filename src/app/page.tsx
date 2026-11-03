@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -11,7 +12,6 @@ import {
   Wrench,
 } from "lucide-react";
 
-import HeroVisual from "@/components/HeroVisual";
 import ProjectCard from "@/components/ProjectCard";
 import SectionTitle from "@/components/SectionTitle";
 
@@ -27,7 +27,9 @@ export default function HomePage() {
 
   return (
     <>
-      {/* HERO */}
+      {/* =========================
+          HERO
+      ========================== */}
       <section className="overflow-hidden bg-white">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:px-8 lg:py-24 xl:gap-14">
           {/* 左側 */}
@@ -37,11 +39,11 @@ export default function HomePage() {
             </span>
 
             <h1 className="mt-6 font-bold leading-[1.18] tracking-tight text-slate-900">
-              <span className="block whitespace-nowrap text-[34px] sm:text-[40px] lg:text-[42px] xl:text-[48px]">
+              <span className="block text-[34px] sm:text-[40px] lg:text-[42px] xl:text-[48px]">
                 個人開発と学習の成果を
               </span>
 
-              <span className="mt-2 block whitespace-nowrap text-[34px] text-blue-600 sm:text-[40px] lg:text-[42px] xl:text-[48px]">
+              <span className="mt-2 block text-[34px] text-blue-600 sm:text-[40px] lg:text-[42px] xl:text-[48px]">
                 まとめたポートフォリオ
               </span>
             </h1>
@@ -49,7 +51,7 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 md:text-lg">
               Next.js・TypeScriptを中心に、
               個人開発したWebアプリケーションや、
-              UI設計・バックエンド学習などの成果を紹介しています。
+              UI設計・バックエンド開発などの成果を紹介しています。
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -70,14 +72,29 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 右側 */}
+          {/* 右側画像 */}
           <div className="min-w-0">
-            <HeroVisual />
+            <div className="relative overflow-hidden rounded-[2rem] border border-blue-100 bg-blue-50 shadow-2xl shadow-blue-100">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/朝日に輝く花咲く丘と遠山.png"
+                  alt="朝日に輝く花咲く丘と遠山"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 46vw"
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* =========================
+          ABOUT
+      ========================== */}
       <section
         id="about"
         className="scroll-mt-28 py-20"
@@ -89,15 +106,23 @@ export default function HomePage() {
           />
 
           <div className="grid gap-8 rounded-3xl border border-slate-200 bg-white p-7 shadow-sm md:grid-cols-[180px_1fr] md:p-10">
+            {/* プロフィール画像 */}
             <div className="flex items-center justify-center">
-              <div className="flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 text-4xl font-bold text-blue-700 shadow-inner">
-                MS
+              <div className="relative h-36 w-36 overflow-hidden rounded-full border-4 border-blue-50 bg-blue-50 shadow-md">
+                <Image
+                  src="/images/笑顔の紳士、紺色の装い.png"
+                  alt="プロフィール画像"
+                  fill
+                  sizes="144px"
+                  className="object-cover object-center"
+                />
               </div>
             </div>
 
+            {/* プロフィール */}
             <div className="flex min-w-0 flex-col justify-center">
               <p className="text-sm font-semibold text-blue-600">
-                Front-end / System Engineer
+                Frontend / Backend / System Engineer
               </p>
 
               <h2 className="mt-2 text-3xl font-bold text-slate-900">
@@ -106,8 +131,9 @@ export default function HomePage() {
 
               <p className="mt-4 max-w-3xl leading-8 text-slate-600">
                 システムエンジニアとして業務に携わりながら、
-                Next.js・TypeScriptを中心とした個人開発と、
-                Laravelなどのバックエンド技術の学習に取り組んでいます。
+                Next.js・TypeScriptを中心とした個人開発に取り組んでいます。
+                また、Laravel・PHP・データベースなど、
+                バックエンド技術についても継続して個人開発・学習しています。
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
@@ -115,7 +141,14 @@ export default function HomePage() {
                   "Next.js",
                   "TypeScript",
                   "Tailwind CSS",
-                  "Laravel 学習中",
+                  "HTML",
+                  "CSS",
+                  "Laravel",
+                  "PHP",
+                  "MySQL",
+                  "PostgreSQL",
+                  "GitHub",
+                  "Docker",
                 ].map((item) => (
                   <span
                     key={item}
@@ -130,7 +163,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PROJECTS */}
+      {/* =========================
+          FEATURED PROJECTS
+      ========================== */}
       <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-5">
@@ -159,7 +194,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SKILLS */}
+      {/* =========================
+          SKILLS
+      ========================== */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <SectionTitle
@@ -210,7 +247,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* LEARNING */}
+      {/* =========================
+          LEARNING
+      ========================== */}
       <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <SectionTitle
@@ -262,7 +301,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* =========================
+          CONTACT
+      ========================== */}
       <section
         id="contact"
         className="scroll-mt-28 py-20"
