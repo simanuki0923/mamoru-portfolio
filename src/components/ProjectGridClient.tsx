@@ -70,35 +70,63 @@ export default function ProjectGridClient({
 
   return (
     <>
-      <div className="mb-8 flex flex-wrap gap-3">
-        {filters.map((item) => (
-          <button
-            key={item.value}
-            type="button"
-            onClick={() =>
-              setFilter(item.value)
-            }
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-              filter === item.value
-                ? "bg-blue-600 text-white shadow"
-                : "border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-600"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
+      {/* =========================
+          FILTER
+      ========================== */}
+      <div
+        className="mb-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap"
+        role="group"
+        aria-label="制作実績の絞り込み"
+      >
+        {filters.map((item) => {
+          const isSelected =
+            filter === item.value;
+
+          return (
+            <button
+              key={item.value}
+              type="button"
+              onClick={() =>
+                setFilter(item.value)
+              }
+              aria-pressed={isSelected}
+              className={`min-h-11 w-full rounded-full px-4 py-2.5 text-sm font-semibold transition sm:w-auto sm:px-5 ${
+                isSelected
+                  ? "bg-blue-600 text-white shadow-sm"
+                  : "border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600"
+              }`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {filteredProjects.map(
-          (project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-            />
-          ),
-        )}
-      </div>
+      {/* =========================
+          PROJECT GRID
+      ========================== */}
+      {filteredProjects.length > 0 ? (
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {filteredProjects.map(
+            (project) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+              />
+            ),
+          )}
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-slate-200 bg-white px-6 py-12 text-center shadow-sm">
+          <p className="font-semibold text-slate-700">
+            該当する制作実績はありません。
+          </p>
+
+          <p className="mt-2 text-sm text-slate-500">
+            別の条件を選択してください。
+          </p>
+        </div>
+      )}
     </>
   );
 }

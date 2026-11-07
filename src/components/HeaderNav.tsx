@@ -26,26 +26,45 @@ export default function HeaderNav() {
       return pathname === "/";
     }
 
-    return pathname.startsWith(
-      href.replace(/\/$/, ""),
+    const normalizedHref =
+      href.replace(/\/$/, "");
+
+    return (
+      pathname === normalizedHref ||
+      pathname.startsWith(
+        `${normalizedHref}/`,
+      )
     );
   };
 
   return (
-    <nav className="flex items-center gap-1 sm:gap-2">
-      {navigation.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-            isActive(item.href)
-              ? "bg-blue-50 text-blue-600"
-              : "text-slate-600 hover:bg-slate-50 hover:text-blue-600"
-          }`}
-        >
-          {item.label}
-        </Link>
-      ))}
+    <nav
+      aria-label="メインナビゲーション"
+      className="flex items-center gap-1 sm:gap-2"
+    >
+      {navigation.map((item) => {
+        const active =
+          isActive(item.href);
+
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            aria-current={
+              active
+                ? "page"
+                : undefined
+            }
+            className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+              active
+                ? "bg-blue-50 text-blue-600"
+                : "text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+            }`}
+          >
+            {item.label}
+          </Link>
+        );
+      })}
 
       <Link
         href="/#contact"

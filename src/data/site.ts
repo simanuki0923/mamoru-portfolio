@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "島貫 守",
   siteName: "Mamoru Portfolio",
 
-  role: "Front-end Developer Portfolio",
+  role: "Frontend / Backend / System Engineer",
 
   title:
     "個人開発と学習の成果をまとめたポートフォリオ",

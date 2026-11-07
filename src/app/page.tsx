@@ -14,6 +14,8 @@ import {
 
 import ProjectCard from "@/components/ProjectCard";
 import SectionTitle from "@/components/SectionTitle";
+import Services from "@/components/Services";
+import Strengths from "@/components/Strengths";
 
 import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/site";
@@ -24,6 +26,7 @@ import {
 
 export default function HomePage() {
   const featuredProjects = projects.slice(0, 3);
+  const featuredLearningItems = learningItems.slice(0, 3);
 
   return (
     <>
@@ -34,24 +37,50 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:px-8 lg:py-24 xl:gap-14">
           {/* 左側 */}
           <div className="min-w-0">
-            <span className="inline-flex rounded-lg bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
+            <span className="inline-flex rounded-lg bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-600 sm:px-4 sm:text-sm">
               {siteConfig.role}
             </span>
 
-            <h1 className="mt-6 font-bold leading-[1.18] tracking-tight text-slate-900">
-              <span className="block text-[34px] sm:text-[40px] lg:text-[42px] xl:text-[48px]">
-                個人開発と学習の成果を
+            <h1 className="mt-6 font-bold leading-[1.2] tracking-tight text-slate-900">
+              {/* スマホ */}
+              <span className="block text-[28px] sm:hidden">
+                Webアプリ・
               </span>
 
-              <span className="mt-2 block text-[34px] text-blue-600 sm:text-[40px] lg:text-[42px] xl:text-[48px]">
-                まとめたポートフォリオ
+              <span className="block text-[28px] sm:hidden">
+                業務システムの
+              </span>
+
+              {/* 640px以上 */}
+              <span className="hidden text-[40px] sm:block lg:text-[42px] xl:text-[48px]">
+                Webアプリ・業務システムの
+              </span>
+
+              <span className="mt-2 block text-[30px] text-blue-600 sm:text-[40px] lg:text-[42px] xl:text-[48px]">
+                設計・開発
               </span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 md:text-lg">
-              Next.js・TypeScriptを中心に、
-              個人開発したWebアプリケーションや、
-              UI設計・バックエンド開発などの成果を紹介しています。
+            <p className="mt-6 max-w-2xl text-pretty text-base leading-8 text-slate-600 md:text-lg">
+              {
+                "Next.js・TypeScriptによるフロントエンド開発を中心に、"
+              }
+
+              <span className="sm:whitespace-nowrap">
+                Laravel・PHP・データベース
+              </span>
+
+              {
+                "を利用したバックエンド開発にも取り組み、"
+              }
+
+              <span className="sm:whitespace-nowrap">
+                Webアプリケーション
+              </span>
+
+              {
+                "の設計・実装を行っています。"
+              }
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -64,10 +93,10 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="#about"
+                href="#contact"
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-600"
               >
-                自己紹介を見る
+                お問い合わせ
               </Link>
             </div>
           </div>
@@ -164,6 +193,16 @@ export default function HomePage() {
       </section>
 
       {/* =========================
+          SERVICES
+      ========================== */}
+      <Services />
+
+      {/* =========================
+          STRENGTHS
+      ========================== */}
+      <Strengths />
+
+      {/* =========================
           FEATURED PROJECTS
       ========================== */}
       <section className="bg-white py-20">
@@ -254,38 +293,33 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <SectionTitle
             title="Learning"
-            description="現在継続して取り組んでいる学習内容です。"
+            description="現在継続して取り組んでいる技術・学習内容です。"
           />
 
-          <div className="space-y-4">
-            {learningItems.map((item) => (
-              <div
+          <div className="grid gap-5 md:grid-cols-3">
+            {featuredLearningItems.map((item) => (
+              <article
                 key={item.title}
-                className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-200 hover:shadow-sm md:grid-cols-[130px_1fr]"
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
               >
-                <div className="flex">
-                  <span className="h-fit rounded-full bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-600">
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <BookOpen size={20} />
+                  </div>
+
+                  <span className="rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-600">
                     {item.status}
                   </span>
                 </div>
 
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <BookOpen
-                      size={17}
-                      className="shrink-0 text-blue-600"
-                    />
+                <h3 className="font-bold text-slate-900">
+                  {item.title}
+                </h3>
 
-                    <h3 className="font-bold text-slate-900">
-                      {item.title}
-                    </h3>
-                  </div>
-
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {item.description}
+                </p>
+              </article>
             ))}
           </div>
 
@@ -317,35 +351,40 @@ export default function HomePage() {
                 </p>
 
                 <h2 className="mt-2 text-3xl font-bold text-slate-900">
-                  制作物・ソースコードについて
+                  開発・お仕事についてのご相談
                 </h2>
 
                 <p className="mt-4 max-w-2xl leading-7 text-slate-600">
-                  制作物のソースコードはGitHubで公開しています。
-                  開発内容や制作物についてはこちらから確認できます。
+                  Webアプリケーションや業務システムの開発、
+                  フロントエンド・バックエンド開発について、
+                  ご相談がありましたらお気軽にお問い合わせください。
+                </p>
+
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-500">
+                  制作実績やソースコードはGitHubでも公開しています。
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
+                {siteConfig.email && (
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-700"
+                  >
+                    <Mail size={19} />
+                    メールで問い合わせる
+                  </a>
+                )}
+
                 <a
                   href={siteConfig.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-600"
                 >
                   <GitBranch size={19} />
-                  GitHub
+                  GitHubを見る
                 </a>
-
-                {siteConfig.email && (
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-600"
-                  >
-                    <Mail size={19} />
-                    Email
-                  </a>
-                )}
               </div>
             </div>
           </div>

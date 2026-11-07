@@ -1,4 +1,6 @@
-export type ProjectCategory = "personal" | "learning";
+export type ProjectCategory =
+  | "personal"
+  | "learning";
 
 export type ProjectStatus =
   | "開発中"
@@ -11,22 +13,55 @@ export type ProjectVisualType =
   | "shop"
   | "mobile";
 
+export type ProjectProblem = {
+  problem: string;
+  solution: string;
+};
+
 export type Project = {
   slug: string;
+
   title: string;
+
   summary: string;
+
   description: string;
+
   category: ProjectCategory;
+
   status: ProjectStatus;
+
   role: string;
+
   period: string;
+
   technologies: string[];
+
   features: string[];
+
   highlights: string[];
+
   challenges: string[];
+
   visualType: ProjectVisualType;
+
   githubUrl?: string;
+
   demoUrl?: string;
+
   image?: string;
+
   imageAlt?: string;
+
+  /* =========================
+  Case Study
+  ========================== */
+
+  purpose?: string;
+
+  problems?: ProjectProblem[];
+
+  learnings?: string[];
+
+  nextSteps?: string[];
 };
